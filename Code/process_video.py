@@ -14,7 +14,7 @@ from retinaface import RetinaFace
 
 #  Logging Setup
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("VisionAI")
+logger = logging.getLogger("VisionAI-Video")
 
 #  SQL Server Connection
 SQL_CONNECTION_STRING = (
