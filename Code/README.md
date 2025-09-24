@@ -123,8 +123,3 @@ python process_video.py
 7. **Update MediaItems** to mark as processed.
 
 ---
-
-
-
-Do you want me to do that?
-```
