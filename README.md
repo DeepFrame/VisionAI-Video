@@ -9,10 +9,14 @@ The pipeline supports GPU acceleration via **TensorFlow** for embeddings and ens
 ## Features
 
 * Fetch unprocessed videos from a `SQL Server` database
-* Extract keyframes using:
-
-  * Motion detection-based scoring
-  * Frame skipping for short videos
+* Extract keyframes using two methods depending on video length:
+  * **Frame-Difference based Keyframe Selection (`extract_keyframes`)**  
+    - Computes frame-to-frame differences, applies median blur, adaptive thresholding, and morphological operations.  
+    - Calculates a motion score and selects frames exceeding a threshold.  
+    - Suitable for long videos with multiple scene changes.
+  * **Frame Skipping (`alternative_algorithm`)**  
+    - Simply selects every N-th frame (default 10) without motion analysis.  
+    - Suitable for short videos (<60 sec) to reduce computation.
 * Detect faces in frames using `RetinaFace`
 * Crop faces to **square format** with configurable margins
 * Track faces across frames using `DeepSort`
