@@ -19,6 +19,21 @@ from dotenv import load_dotenv
 import shutil
 from pathlib import Path
 from tabulate import tabulate
+
+# ------------------------------
+# GPU Setup
+# ------------------------------
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        print(f"[INFO] {len(gpus)} GPU(s) detected: {[gpu.name for gpu in gpus]}")
+    except RuntimeError as e:
+        print(f"[ERROR] GPU setup failed: {e}")
+else:
+    print("[INFO] No GPU detected, running on CPU")
+    
 # ------------------------------
 # Load environment variables
 # ------------------------------
@@ -44,20 +59,6 @@ KEEP_COPY = True
 DRY_RUN = False
 
 embedder = FaceNet()
-
-# ------------------------------
-# GPU Setup
-# ------------------------------
-gpus = tf.config.list_physical_devices('GPU')
-if gpus:
-    try:
-        for gpu in gpus:
-            tf.config.experimental.set_memory_growth(gpu, True)
-        print(f"[INFO] {len(gpus)} GPU(s) detected: {[gpu.name for gpu in gpus]}")
-    except RuntimeError as e:
-        print(f"[ERROR] GPU setup failed: {e}")
-else:
-    print("[INFO] No GPU detected, running on CPU")
 
 # ------------------------------
 # Logging Setup
