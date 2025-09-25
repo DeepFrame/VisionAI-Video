@@ -1,5 +1,12 @@
 opencv-python
-retina-face
-numpy
-matplotlib
+torch
+torchvision
 pyodbc
+numpy
+retina-face
+deep-sort-realtime
+tensorflow
+keras-facenet
+scikit-learn
+python-dotenv
+tabulate
